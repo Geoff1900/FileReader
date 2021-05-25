@@ -13,7 +13,7 @@ namespace FileReader.Tests
             //Arrange
             var reader = new Reader();
             //Act
-            var expected = reader.Read<FileReader.Core.TypeDoesImplementIExcelReadable>();
+            var expected = reader.Read<TypeDoesImplementIExcelReadable>();
             //Assert
             Assert.IsType<List<TypeDoesImplementIExcelReadable>>(expected);
         }
@@ -26,7 +26,7 @@ namespace FileReader.Tests
         //When
         
         //Then
-        Assert.Throws<ArgumentException>(()=>reader.Read<FileReader.Core.TypeDoesImplementIExcelReadable>());
+        Assert.Throws<ArgumentException>(()=>reader.Read<TypeDoesImplementIExcelReadable>());
         }
     }
 }
