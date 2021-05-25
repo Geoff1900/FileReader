@@ -1,7 +1,10 @@
+using System.Collections.Generic;
+using ExcelDataReader;
+
 namespace FileReader.Core
 {
     public interface IExcelReadable
     {
-         void DeSerialize();
+         public void DeSerialize(IExcelDataReader reader, Dictionary<string, int> columns, int count){}
     }
 }
