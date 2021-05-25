@@ -18,7 +18,7 @@ namespace FileReader.Tests
             Assert.IsType<List<TypeDoesImplementIExcelReadable>>(expected);
         }
         [Fact]
-        public void Read_filePathIsNullOrWhiteSpace_ThrowsArgumentException()
+        public void Constructor_filePathIsNullOrWhiteSpace_ThrowsArgumentException()
         {
         //Given
         var reader = new Reader(null);
