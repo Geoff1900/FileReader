@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D34AAD50-FA8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileReader.Core", "src\FileReader.Core\FileReader.Core.csproj", "{C5242C8E-2F5D-498E-BAFB-BCD990334D44}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{209752EE-2D09-4F52-979A-8DCE1C340CC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileReader.Tests", "test\FileReader.Tests\FileReader.Tests.csproj", "{E89DFB16-5122-45CF-A8E0-0BD80E6605A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +36,21 @@ Global
 		{C5242C8E-2F5D-498E-BAFB-BCD990334D44}.Release|x64.Build.0 = Release|Any CPU
 		{C5242C8E-2F5D-498E-BAFB-BCD990334D44}.Release|x86.ActiveCfg = Release|Any CPU
 		{C5242C8E-2F5D-498E-BAFB-BCD990334D44}.Release|x86.Build.0 = Release|Any CPU
+		{E89DFB16-5122-45CF-A8E0-0BD80E6605A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E89DFB16-5122-45CF-A8E0-0BD80E6605A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E89DFB16-5122-45CF-A8E0-0BD80E6605A4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E89DFB16-5122-45CF-A8E0-0BD80E6605A4}.Debug|x64.Build.0 = Debug|Any CPU
+		{E89DFB16-5122-45CF-A8E0-0BD80E6605A4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E89DFB16-5122-45CF-A8E0-0BD80E6605A4}.Debug|x86.Build.0 = Debug|Any CPU
+		{E89DFB16-5122-45CF-A8E0-0BD80E6605A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E89DFB16-5122-45CF-A8E0-0BD80E6605A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E89DFB16-5122-45CF-A8E0-0BD80E6605A4}.Release|x64.ActiveCfg = Release|Any CPU
+		{E89DFB16-5122-45CF-A8E0-0BD80E6605A4}.Release|x64.Build.0 = Release|Any CPU
+		{E89DFB16-5122-45CF-A8E0-0BD80E6605A4}.Release|x86.ActiveCfg = Release|Any CPU
+		{E89DFB16-5122-45CF-A8E0-0BD80E6605A4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C5242C8E-2F5D-498E-BAFB-BCD990334D44} = {D34AAD50-FA8F-476B-9DCD-2247AC68F780}
+		{E89DFB16-5122-45CF-A8E0-0BD80E6605A4} = {209752EE-2D09-4F52-979A-8DCE1C340CC3}
 	EndGlobalSection
 EndGlobal
