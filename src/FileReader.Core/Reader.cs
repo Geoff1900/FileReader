@@ -9,7 +9,7 @@ namespace FileReader.Core
         {
         }
 
-        public IEnumerable<T> Read<T>(){
+        public IEnumerable<T> Read<T>() where T: IExcelReadable, new(){
             return new List<T>();
         }
     }
