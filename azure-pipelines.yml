@@ -29,4 +29,10 @@ steps:
     command: 'build'
     projects: 'src/*/*.csproj'
     arguments: '--no-restore --configuration  $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: 'test/*/*.csproj'
+    testRunTitle: 'Unit tests'
     
