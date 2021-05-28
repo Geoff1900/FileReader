@@ -6,6 +6,9 @@
 trigger:
 - master
 
+variables:
+  buildConfiguration: 'release'
+
 pool:
   vmImage: 'windows-latest'
 
