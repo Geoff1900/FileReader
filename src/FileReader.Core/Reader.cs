@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Abstractions;
 using ExcelDataReader;
 
 namespace FileReader.Core
@@ -8,10 +9,18 @@ namespace FileReader.Core
     public class Reader
     {
         private readonly string _filePath;
-        public Reader()
+        private readonly IFileSystem _filesystem;
+
+        public Reader() : this(new FileSystem())
         {
             var separator = Path.DirectorySeparatorChar;
             _filePath = $"C:{separator}Users{separator}ge080206{separator}Downloads{separator}E6 51426647-19_01_2021.xlsx";
+        }
+
+        public Reader(IFileSystem filesystem)
+        {
+            _filesystem = filesystem;
+
         }
 
         public Reader(string filePath)
@@ -38,8 +47,8 @@ namespace FileReader.Core
             }
             return objectList;
         }
-           private Columns<string, int> _columns;
-            private Columns<string, int> BuildColumns(IExcelDataReader reader)
+        private Columns<string, int> _columns;
+        private Columns<string, int> BuildColumns(IExcelDataReader reader)
         {
             reader.Read();
             _columns = new Columns<string, int>();

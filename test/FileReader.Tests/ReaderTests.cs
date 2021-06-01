@@ -13,7 +13,7 @@ namespace FileReader.Tests
         {
             //Given
             DefineCustomEncoding();
-            var reader = new Reader(null);
+            var reader = new Reader("");
             //When
             //Then
             Assert.Throws<ArgumentException>(() => reader.Read<TypeDoesImplementIExcelReadable>());
