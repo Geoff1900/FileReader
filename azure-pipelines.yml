@@ -22,14 +22,21 @@ steps:
   displayName: 'Run a multi-line script'
   
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
   inputs:
     command: 'restore'
     projects: 'src/*/*.csproj'
     feedsToUse: 'select'
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
   inputs:
     command: 'build'
     projects: 'src/*/*.csproj'
     arguments: '--no-restore --configuration  $(buildConfiguration)'
 
+- task: DotNetCoreCLI@2
+  displayName: 'run unit tests'
+  inputs:
+    command: 'test'
+    projects: 'test/*/*.csproj'
