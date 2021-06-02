@@ -8,13 +8,11 @@ namespace FileReader.Core
 {
     public class Reader
     {
-        private readonly string _filePath;
         private readonly IFileSystem _filesystem;
 
         public Reader() : this(new FileSystem())
         {
             var separator = Path.DirectorySeparatorChar;
-            _filePath = $"C:{separator}Users{separator}ge080206{separator}Downloads{separator}E6 51426647-19_01_2021.xlsx";
         }
 
         public Reader(IFileSystem filesystem)
@@ -23,17 +21,13 @@ namespace FileReader.Core
 
         }
 
-        public Reader(string filePath)
-        {
-            _filePath = filePath;
-        }
 
-        public IEnumerable<T> Read<T>() where T : IExcelReadable, new()
+        public IEnumerable<T> Read<T>(string filePath) where T : IExcelReadable, new()
         {
             List<T> objectList = new List<T>();
-            if (string.IsNullOrWhiteSpace(_filePath)) throw new ArgumentException(message: "filePath name cannot be null or empty.", paramName: nameof(_filePath));
-            using var stream = File.Open(_filePath, FileMode.Open, FileAccess.Read);
-            using var reader = ExcelReaderFactory.CreateReader(stream);
+            if (string.IsNullOrWhiteSpace(filePath)) throw new ArgumentException(message: "filePath name cannot be null or empty.", paramName: nameof(filePath));
+            using var stream = _filesystem.File.Open(filePath, FileMode.Open, FileAccess.Read);
+            using var reader = ExcelReaderFactory.CreateCsvReader(stream);
 
             var _columns = BuildColumns(reader);
 
