@@ -2,6 +2,7 @@ using ExcelDataReader;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 
@@ -35,8 +36,9 @@ namespace FileReader.Core
                 var propertyType = properties[i].PropertyType;
                 var propertyValue = reader.GetString(i);
                 if (string.IsNullOrWhiteSpace(propertyValue)) break;
-                properties[i].SetValue(this, TypeDescriptor.GetConverter(propertyType).ConvertFrom(propertyValue));
-                Console.WriteLine(TypeDescriptor.GetConverter(propertyType).ConvertFrom(propertyValue));
+                properties[i].SetValue(this, TypeDescriptor.GetConverter(propertyType).ConvertFrom(null, new CultureInfo("en-GB"), propertyValue));
+                
+                //Console.WriteLine(TypeDescriptor.GetConverter(propertyType).ConvertFrom(propertyValue));
             }
         }
     }
