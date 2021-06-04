@@ -22,16 +22,14 @@ steps:
   displayName: 'Run a multi-line script'
   
 - task: NuGetAuthenticate@0
-  inputs:
-    nuGetServiceConnections: GeoffNorton
-  
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet restore'
-  inputs:
-    command: 'restore'
-    projects: 'src/*/*.csproj'
-    feedsToUse: config
-    nugetConfigPath: nuget.config
+- script: dotnet restore 
+  #displayName: 'dotnet restore'
+  #inputs:
+    #command: 'restore'
+    #projects: 'src/*/*.csproj'
+    #feedsToUse: config
+    #nugetConfigPath: nuget.config
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
