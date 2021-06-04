@@ -27,7 +27,7 @@ steps:
     command: 'restore'
     projects: 'src/*/*.csproj'
     feedsToUse: 'select'
-    vstsFeed: 'GeoffNorton1'
+    vstsFeed: 'GeoffNorton'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
