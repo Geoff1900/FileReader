@@ -23,20 +23,20 @@ steps:
   
 - task: NuGetAuthenticate@0  
   
-#- task: DotNetCoreCLI@2
-#  displayName: 'dotnet restore'
-#  inputs:
-#    command: 'restore'
-#    projects: 'src/*/*.csproj'
-#    feedsToUse: config
-#    nugetConfigPath: nuget.config
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: 'restore'
+    projects: 'src/*/*.csproj'
+    feedsToUse: config
+    nugetConfigPath: nuget.config
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
     command: 'build'
     projects: 'src/*/*.csproj'
- #   arguments: '--no-restore --configuration  $(buildConfiguration)'
+    arguments: '--no-restore --configuration  $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: 'run unit tests'
