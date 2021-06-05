@@ -19,6 +19,15 @@ steps:
 - script: 
   displayName: 'Run a multi-line script'
   
+- #task: NuGetAuthenticate@0
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: 'restore'
+    projects: '**/*.sln'
+    feedsToUse: config
+    nugetConfigPath: nuget.config  
+  
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
