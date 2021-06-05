@@ -19,7 +19,6 @@ steps:
 - script: 
   displayName: 'Run a multi-line script'
   
-- #task: NuGetAuthenticate@0
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
