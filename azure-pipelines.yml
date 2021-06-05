@@ -21,15 +21,22 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
   
-- task: NuGetAuthenticate@0
-- task: DotNetCoreCLI@2
-- script: dotnet restore 
+- #task: NuGetAuthenticate@0
+- #task: DotNetCoreCLI@2
+- #script: dotnet restore 
   #displayName: 'dotnet restore'
   #inputs:
     #command: 'restore'
     #projects: 'src/*/*.csproj'
     #feedsToUse: config
     #nugetConfigPath: nuget.config
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/*/*.csproj'
+    feedsToUse: 'config'
+    nugetConfigPath: 'nuget.config'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
