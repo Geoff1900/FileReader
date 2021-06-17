@@ -57,5 +57,5 @@ steps:
   displayName: 'NuGet push'
   inputs:
     command: push
-    publishVstsFeed: 'Package Management and sharing code/CommonComponets'
+    publishVstsFeed: 'Package Management and sharing code/CommonComponents'
     allowPackageConflicts: true
