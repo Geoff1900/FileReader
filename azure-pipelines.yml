@@ -51,8 +51,8 @@ steps:
     versioningScheme: byBuildNumber
     
 
-- task: NuGetAuthenticate@0
-  displayName: 'NuGet Authenticate'
+#- task: NuGetAuthenticate@0
+#  displayName: 'NuGet Authenticate'
 - task: NuGetCommand@2
   displayName: 'NuGet push'
   inputs:
