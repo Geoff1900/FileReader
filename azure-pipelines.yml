@@ -6,6 +6,8 @@
 trigger:
 - master
 
+name: 1.0.$(Rev:r)
+
 variables:
   buildConfiguration: 'release'
 
