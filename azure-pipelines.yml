@@ -6,7 +6,7 @@
 trigger:
 - master
 
-#name: 1.0.$(Rev:r)
+name: 1.0.$(Rev:r)
 
 variables:
   buildConfiguration: 'release'
@@ -48,6 +48,6 @@ steps:
     arguments: '--configuration $(buildConfiguration)'
     nobuild: true
     projects: 'src/*/*.csproj'
-    versioningScheme: off
+    versioningScheme: byBuildNumber
     
 
