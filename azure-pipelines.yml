@@ -53,9 +53,10 @@ steps:
 
 #- task: NuGetAuthenticate@0
 #  displayName: 'NuGet Authenticate'
-- task: NuGetCommand@2
-  displayName: 'NuGet push'
-  inputs:
-    command: push
-    publishVstsFeed: 'Package Management and sharing code/CommonComponents'
-    allowPackageConflicts: true
+- script: dotnet nuget push --source "CommonComponents" --api-key az $(Build.ArtifactStagingDirectory)
+#- task: NuGetCommand@2
+#  displayName: 'NuGet push'
+#  inputs:
+#    command: push
+#    publishVstsFeed: 'Package Management and sharing code/CommonComponents'
+#    allowPackageConflicts: true
