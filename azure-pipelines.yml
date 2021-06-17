@@ -48,4 +48,6 @@ steps:
     arguments: '--configuration $(buildConfiguration)'
     nobuild: true
     projects: 'src/*/*.csproj'
-    versioningScheme: 'byBuildNumber'
+    versioningScheme: off
+    
+
