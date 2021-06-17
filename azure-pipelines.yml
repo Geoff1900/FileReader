@@ -17,10 +17,9 @@ pool:
 steps:
 
 - script: echo $(Build.ArtifactStagingDirectory)
-- script: echo $(BUILD_BUILDNUMBER)
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet restore'
+  displayName: 'dotnet restore packages'
   inputs:
     command: 'restore'
     projects: '**/*.sln'
@@ -43,6 +42,7 @@ steps:
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'   
 
 - task: DotNetCoreCLI@2
+  displayName: 'Package component'
   inputs:
     command: 'pack'
     arguments: '--configuration $(buildConfiguration)'
@@ -51,3 +51,11 @@ steps:
     versioningScheme: byBuildNumber
     
 
+- task: NuGetAuthenticate@0
+  displayName: 'NuGet Authenticate'
+- task: NuGetCommand@2
+  displayName: 'NuGet push'
+  inputs:
+    command: push
+    publishVstsFeed: 'Package Management and sharing/CommonComponets'
+    allowPackageConflicts: true
