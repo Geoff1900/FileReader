@@ -6,7 +6,7 @@
 trigger:
 - master
 
-#name: 1.0.$(Rev:r)
+name: 1.0.$(Rev:r)
 
 variables:
   buildConfiguration: 'release'
@@ -17,10 +17,9 @@ pool:
 steps:
 
 - script: echo $(Build.ArtifactStagingDirectory)
-- script: echo $(BUILD_BUILDNUMBER)
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet restore'
+  displayName: 'dotnet restore packages'
   inputs:
     command: 'restore'
     projects: '**/*.sln'
@@ -43,11 +42,21 @@ steps:
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'   
 
 - task: DotNetCoreCLI@2
+  displayName: 'Package component'
   inputs:
     command: 'pack'
     arguments: '--configuration $(buildConfiguration)'
     nobuild: true
     projects: 'src/*/*.csproj'
-    versioningScheme: off
+    versioningScheme: byBuildNumber
     
 
+#- task: NuGetAuthenticate@0
+#  displayName: 'NuGet Authenticate'
+- script: dotnet nuget push --source "CommonComponents" --api-key az $(Build.ArtifactStagingDirectory)
+#- task: NuGetCommand@2
+#  displayName: 'NuGet push'
+#  inputs:
+#    command: push
+#    publishVstsFeed: 'Package Management and sharing code/CommonComponents'
+#    allowPackageConflicts: true
