@@ -45,5 +45,5 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.csproj'
+    projects: 'src/*/*.csproj'
     versioningScheme: 'byBuildNumber'
