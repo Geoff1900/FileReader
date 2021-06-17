@@ -6,6 +6,8 @@
 trigger:
 - master
 
+#name: 1.0.$(Rev:r)
+
 variables:
   buildConfiguration: 'release'
 
@@ -13,22 +15,19 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-  
+- script: echo $(Build.ArtifactStagingDirectory)
+- script: echo $(BUILD_BUILDNUMBER)
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
     command: 'restore'
-    projects: 'src/*/*.csproj'
-    feedsToUse: 'select'
-    vstsFeed: 'GeoffNorton'
-
+    projects: '**/*.sln'
+    feedsToUse: config
+    nugetConfigPath: nuget.config  
+    includeNuGetOrg: true
+  
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
@@ -41,3 +40,14 @@ steps:
   inputs:
     command: 'test'
     projects: 'test/*/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'   
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    arguments: '--configuration $(buildConfiguration)'
+    nobuild: true
+    projects: 'src/*/*.csproj'
+    versioningScheme: off
+    
+
