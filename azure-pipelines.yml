@@ -54,7 +54,7 @@ steps:
 - task: NuGetAuthenticate@0
   displayName: 'NuGet Authenticate'
 - task: NuGetToolInstaller@1
-- script: dotnet nuget push --source "CommonComponents" --api-key az $(Build.ArtifactStagingDirectory)\FileReader.Core.1.0.16.nupkg
+- script: dotnet nuget push --source "CommonComponents" --api-key az $(Build.ArtifactStagingDirectory)\FileReader.Core.1.0.19.nupkg
 #- task: NuGetCommand@2
 #  displayName: 'NuGet push'
 #  inputs:
