@@ -63,7 +63,7 @@ steps:
 - script: dotnet nuget --version  
 - task: NuGetToolInstaller@1
 - script: dotnet nuget --version  
-- script: dotnet nuget push --source "CommonComponents" --api-key az $(Build.ArtifactStagingDirectory)\FileReader.Core.1.0.$(Rev:r).nupkg
+- script: dotnet nuget push --source "CommonComponents" --api-key az $(Build.ArtifactStagingDirectory)\FileReader.Core.$(Build.BuildNumber).nupkg
 #- task: NuGetCommand@2
 #  displayName: 'NuGet push'
 #  inputs:
