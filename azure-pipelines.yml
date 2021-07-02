@@ -43,6 +43,9 @@ steps:
     command: custom
     custom: tool
     arguments: 'restore'
+    feedsToUse: config
+    nugetConfigPath: nuget.config  
+    includeNuGetOrg: true
 
 - task: DotNetCoreCLI@2
   displayName: 'Run unit tests - $(buildConfiguration)'
