@@ -1,15 +1,17 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
+# Build, pack and push component to project feed
 # https://aka.ms/yaml
 
 trigger:
 - master
 
+#Set Package version (so now ignores asemmbly version in .csproj)
 name: 1.0.$(Rev:r)
 
 variables:
   buildConfiguration: 'release'
+  #Set some timeout variables to prevent known issue with Nuget
+  NUGET.PLUGIN.HANDSHAKE.TIMEOUT.IN.SECONDS: 20
+  NUGET.PLUGIN.REQUEST.TIMEOUT.IN.SECONDS: 20
 
 pool:
   vmImage: 'windows-latest'
@@ -17,9 +19,10 @@ pool:
 steps:
 
 - script: echo $(Build.ArtifactStagingDirectory)
+  displayName: 'Verify dotNet build output path'
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet restore packages'
+  displayName: 'Restore packages'
   inputs:
     command: 'restore'
     projects: '**/*.sln'
@@ -28,17 +31,18 @@ steps:
     includeNuGetOrg: true
   
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet build'
+  displayName: 'Build the project (without restoring packages)'
   inputs:
     command: 'build'
     projects: 'src/*/*.csproj'
     arguments: '--no-restore --configuration  $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  displayName: 'run unit tests'
+  displayName: 'Run unit tests'
   inputs:
     command: 'test'
     projects: 'test/*/*.csproj'
+    publishTestResults: true
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'   
 
 - task: DotNetCoreCLI@2
@@ -51,9 +55,27 @@ steps:
     versioningScheme: byBuildNumber
     
 
-#- task: NuGetAuthenticate@0
-#  displayName: 'NuGet Authenticate'
-- script: dotnet nuget push --source "CommonComponents" --api-key az $(Build.ArtifactStagingDirectory)
+- task: NuGetAuthenticate@0
+  displayName: 'NuGet Authenticate'
+  inputs:
+    forceReinstallCredentialProvider: true
+
+- script: dotnet nuget --version
+  displayName: 'Verify dotNet Nuget version before upgrading'
+
+#This next task isn't really required.
+#As the Nuget environment variables fixed the problem.
+#But it looks in the cache first anyway so kept in
+- task: NuGetToolInstaller@1 
+  displayName: 'Upgrade dotNet Nuget Version (checks cache first)'
+  
+- script: dotnet nuget --version  
+  displayName: 'Verify dotNet Nuget version after upgrading'
+
+- script: dotnet nuget push --source "CommonComponents" --api-key az $(Build.ArtifactStagingDirectory)\FileReader.Core.$(Build.BuildNumber).nupkg
+  displayName: 'Push component to project feed'
+  
+#Apparently 
 #- task: NuGetCommand@2
 #  displayName: 'NuGet push'
 #  inputs:
