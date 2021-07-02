@@ -12,6 +12,7 @@ variables:
   #Set some timeout variables to prevent known issue with Nuget
   NUGET.PLUGIN.HANDSHAKE.TIMEOUT.IN.SECONDS: 20
   NUGET.PLUGIN.REQUEST.TIMEOUT.IN.SECONDS: 20
+  dotnetSdkVersion: '5.x'
 
 pool:
   vmImage: 'windows-latest'
