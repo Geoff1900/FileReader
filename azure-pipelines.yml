@@ -18,6 +18,11 @@ pool:
 
 steps:
 
+- task: UseDotNet@2
+  displayName: 'Use .NET SDK $(dotnetSdkVersion)'
+  inputs:
+    version: '$(dotnetSdkVersion)'
+
 - script: echo $(Build.ArtifactStagingDirectory)
   displayName: 'Verify dotNet build output path'
 
