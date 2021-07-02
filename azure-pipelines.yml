@@ -43,6 +43,23 @@ steps:
     projects: 'src/*/*.csproj'
     arguments: '--no-restore --configuration  $(buildConfiguration)'
 
+- task: NuGetAuthenticate@0
+  displayName: 'NuGet Authenticate'
+  inputs:
+    forceReinstallCredentialProvider: true
+
+- script: dotnet nuget --version
+  displayName: 'Verify dotNet Nuget version before upgrading'
+
+#This next task isn't really required.
+#As the Nuget environment variables fixed the problem.
+#But it looks in the cache first anyway so kept in
+- task: NuGetToolInstaller@1 
+  displayName: 'Upgrade dotNet Nuget Version (checks cache first)'
+  
+- script: dotnet nuget --version  
+  displayName: 'Verify dotNet Nuget version after upgrading'
+  
 - task: DotNetCoreCLI@2
   displayName: 'Install .NET tools from local manifest'
   inputs:
@@ -81,22 +98,7 @@ steps:
     versioningScheme: byBuildNumber
     
 
-- task: NuGetAuthenticate@0
-  displayName: 'NuGet Authenticate'
-  inputs:
-    forceReinstallCredentialProvider: true
 
-- script: dotnet nuget --version
-  displayName: 'Verify dotNet Nuget version before upgrading'
-
-#This next task isn't really required.
-#As the Nuget environment variables fixed the problem.
-#But it looks in the cache first anyway so kept in
-- task: NuGetToolInstaller@1 
-  displayName: 'Upgrade dotNet Nuget Version (checks cache first)'
-  
-- script: dotnet nuget --version  
-  displayName: 'Verify dotNet Nuget version after upgrading'
 
 - script: dotnet nuget push --source "CommonComponents" --api-key az $(Build.ArtifactStagingDirectory)\FileReader.Core.$(Build.BuildNumber).nupkg
   displayName: 'Push component to project feed'
