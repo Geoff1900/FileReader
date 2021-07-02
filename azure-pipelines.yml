@@ -42,7 +42,7 @@ steps:
   inputs:
     command: custom
     custom: tool
-    arguments: 'restore --configfile nuget.config'
+    arguments: 'restore --configfile nuget.config --ignore-failed-sources'
 
 - task: DotNetCoreCLI@2
   displayName: 'Run unit tests - $(buildConfiguration)'
