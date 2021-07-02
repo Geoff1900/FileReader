@@ -40,7 +40,7 @@ steps:
   displayName: 'Build the project (without restoring packages)'
   inputs:
     command: 'build'
-    projects: 'src/*/*.csproj'
+    projects: '**/*/*.csproj'
     arguments: '--no-restore --configuration  $(buildConfiguration)'
 
 - task: NuGetAuthenticate@0
