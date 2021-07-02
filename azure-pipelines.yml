@@ -42,7 +42,7 @@ steps:
   inputs:
     command: custom
     custom: tool
-    arguments: 'restore --configFile nuget.config'
+    arguments: 'restore --configfile nuget.config'
 
 - task: DotNetCoreCLI@2
   displayName: 'Run unit tests - $(buildConfiguration)'
