@@ -42,7 +42,10 @@ steps:
     command: 'build'
     projects: '**/*/*.csproj'
     arguments: '--no-restore --configuration  $(buildConfiguration)'
-
+- task: WhiteSource@21
+  inputs:
+    cwd: '$(System.DefaultWorkingDirectory)'
+    projectName: 'FileReader'
 - task: NuGetAuthenticate@0
   displayName: 'NuGet Authenticate'
   inputs:
