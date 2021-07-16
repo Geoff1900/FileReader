@@ -110,3 +110,6 @@ steps:
 #    command: push
 #    publishVstsFeed: 'Package Management and sharing code/CommonComponents'
 #    allowPackageConflicts: true
+- task: WhiteSource@21
+  inputs:
+    cwd: '$(System.DefaultWorkingDirectory)'
