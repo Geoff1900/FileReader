@@ -43,6 +43,10 @@ steps:
     projects: '**/*/*.csproj'
     arguments: '--no-restore --configuration  $(buildConfiguration)'
 
+- task: WhiteSource@21
+  displayName: 'Checking for open source vulnerabilities and licences'
+  inputs:
+    cwd: '$(System.DefaultWorkingDirectory)'
 - task: NuGetAuthenticate@0
   displayName: 'NuGet Authenticate'
   inputs:
@@ -110,6 +114,3 @@ steps:
 #    command: push
 #    publishVstsFeed: 'Package Management and sharing code/CommonComponents'
 #    allowPackageConflicts: true
-- task: WhiteSource@21
-  inputs:
-    cwd: '$(System.DefaultWorkingDirectory)'
