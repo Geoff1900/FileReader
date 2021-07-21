@@ -44,9 +44,19 @@ steps:
     arguments: '--no-restore --configuration  $(buildConfiguration)'
 
 - task: WhiteSource@21
-  displayName: 'Checking for open source vulnerabilities and licences'
+  displayName: 'Checking for open source vulnerabilities and licences - WhiteSource Bolt'
   inputs:
     cwd: '$(System.DefaultWorkingDirectory)'
+
+- task: SnykSecurityScan@0
+  displayName: 'Checking for open source vulnerabilities and licences - Snyk'
+  inputs:
+    serviceConnectionEndpoint: 'Snyk Service Connection'
+    testType: 'app'
+    monitorOnBuild: true
+    failOnIssues: false
+    projectName: 'FileReader'
+
 - task: NuGetAuthenticate@0
   displayName: 'NuGet Authenticate'
   inputs:
