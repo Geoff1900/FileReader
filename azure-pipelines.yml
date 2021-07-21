@@ -38,10 +38,6 @@ steps:
   
 - task: DotNetCoreCLI@2
   displayName: 'Build the project (without restoring packages)'
-  inputs:
-    command: 'build'
-    projects: '**/*/*.csproj'
-    arguments: '--no-restore --configuration  $(buildConfiguration)'
 
 - task: WhiteSource@21
   displayName: 'Checking for open source vulnerabilities and licences - WhiteSource Bolt'
@@ -53,9 +49,12 @@ steps:
   inputs:
     serviceConnectionEndpoint: 'Snyk Service Connection'
     testType: 'app'
+    targetFile: 'FileReader.sln'
     monitorOnBuild: true
     failOnIssues: false
     projectName: 'FileReader'
+
+
 
 - task: NuGetAuthenticate@0
   displayName: 'NuGet Authenticate'
