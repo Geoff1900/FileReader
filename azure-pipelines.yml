@@ -56,6 +56,7 @@ steps:
     monitorOnBuild: true
     failOnIssues: false
     projectName: 'FileReader'
+    testDirectory: '$(System.DefaultWorkingDirectory)'
 
 - task: NuGetAuthenticate@0
   displayName: 'NuGet Authenticate'
