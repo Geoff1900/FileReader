@@ -49,6 +49,7 @@ steps:
   inputs:
     serviceConnectionEndpoint: 'Snyk Service Connection'
     testType: 'app'
+    targetFile: 'FileReader\FileReader.sln'
     monitorOnBuild: true
     failOnIssues: false
     projectName: 'FileReader'
