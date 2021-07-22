@@ -57,6 +57,7 @@ steps:
     monitorOnBuild: true
     failOnIssues: false
     projectName: 'FileReader'
+    organization: 'geoff1900'
 
 - task: NuGetAuthenticate@0
   displayName: 'NuGet Authenticate'
