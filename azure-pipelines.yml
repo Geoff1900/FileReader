@@ -47,7 +47,7 @@ steps:
 - task: SnykSecurityScan@0
   displayName: 'Checking for open source vulnerabilities and licences - Snyk'
   inputs:
-    serviceConnectionEndpoint: 'Snyk Service Connection'
+    serviceConnectionEndpoint: 'Snyk Service Connection 2'
     testType: 'app'
     targetFile: 'src\FileReader.Core\obj\project.assets.json'
     monitorOnBuild: true
