@@ -53,8 +53,7 @@ steps:
   inputs:
     serviceConnectionEndpoint: 'Snyk Service Connection 2'
     testType: 'app'
-   # targetFile: 'src\FileReader.Core\obj\project.assets.json'
-    targetFile: 'FileReader.sln'
+    targetFile: 'src\FileReader.Core\obj\project.assets.json'
     monitorOnBuild: true
     failOnIssues: false
     projectName: 'FileReader'
