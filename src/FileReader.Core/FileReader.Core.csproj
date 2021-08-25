@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Text.RegularExpressions" version="4.3.1" />
     <PackageReference Include="ExcelDataReader" Version="3.6.0" />
     <PackageReference Include="System.IO.Abstractions" Version="13.2.33" />
   </ItemGroup>
