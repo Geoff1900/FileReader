@@ -1,5 +1,6 @@
 # Build, pack and push component to project feed
 # https://aka.ms/yaml
+# Try and trigger Azure Pipelines
 
 trigger:
 - master
