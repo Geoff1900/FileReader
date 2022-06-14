@@ -6,7 +6,7 @@ trigger:
 - master
 
 #Set Package version (so now ignores asemmbly version in .csproj)
-name: 1.0.$(Rev:r)
+name: 1.1.$(Rev:r)
 
 variables:
   buildConfiguration: 'Release'
