@@ -6,6 +6,7 @@ using ExcelDataReader;
 
 namespace FileReader.Core
 {
+    using ExcelDataReader;
     public class Reader
     {
         private readonly IFileSystem _filesystem;
